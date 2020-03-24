@@ -1,4 +1,6 @@
-﻿namespace CustomERP.Data
+﻿using CustomERP.Data.Configurations;
+
+namespace CustomERP.Data
 {
     using System;
     using System.Linq;
@@ -90,7 +92,13 @@
 
         // Applies configurations
         private void ConfigureUserIdentityRelations(ModelBuilder builder)
-             => builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
+        {
+            builder.ApplyConfiguration(new ApplicationUserConfiguration());
+            builder.ApplyConfiguration(new AddressConfiguration());
+            builder.ApplyConfiguration(new CompanyConfiguration());
+            builder.ApplyConfiguration(new OrderConfiguration());
+            builder.ApplyConfiguration(new SectionConfiguration());
+        }
 
         private void ApplyAuditInfoRules()
         {
