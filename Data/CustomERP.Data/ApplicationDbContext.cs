@@ -28,8 +28,6 @@
 
         public DbSet<Company> Companies { get; set; }
 
-        public DbSet<Employee> Employees { get; set; }
-
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<Section> Sections { get; set; }
