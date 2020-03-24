@@ -114,6 +114,7 @@ namespace CustomERP.Data
                 if (entry.State == EntityState.Added && entity.CreatedOn == default)
                 {
                     entity.CreatedOn = DateTime.UtcNow;
+                    entity.CreatedFrom = "TODO";
                 }
                 else
                 {

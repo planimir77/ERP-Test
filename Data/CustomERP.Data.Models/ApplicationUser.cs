@@ -1,14 +1,12 @@
 ﻿// ReSharper disable VirtualMemberCallInConstructor
 
-using System.ComponentModel.DataAnnotations;
-
 namespace CustomERP.Data.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using CustomERP.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
@@ -27,24 +25,27 @@ namespace CustomERP.Data.Models
             "^([A-Z][a-z]+\\s[A-Z][a-z]+\\s[A-Z][a-z]+|[А-Я][а-я]+\\s[А-Я][а-я]+\\s[А-Я][а-я]+)")]
         public string FullName { get; set; }
 
+        [Required]
         public string Position { get; set; }
 
         // Audit info
-        public string CreatorUserId { get; set; }
-
-        public string ModifierUserId { get; set; }
+        public string CreatedFrom { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
+
+#nullable enable
+        public string? ModifiedFrom { get; set; }
 
         // Deletable entity
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
 
-        public string DeletedFrom { get; set; }
+        public string? DeletedFrom { get; set; }
 
+        // Relations
         public int? AddressId { get; set; }
 
         public virtual Address UserAddress { get; set; }
@@ -53,7 +54,6 @@ namespace CustomERP.Data.Models
 
         public virtual Section Section { get; set; }
 
-#nullable enable
         public string? CompanyId { get; set; }
 
         public virtual Company Company { get; set; }
