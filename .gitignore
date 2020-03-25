@@ -357,3 +357,4 @@ MigrationBackup/
 appsettings.Production.json
 *.min.css
 *.min.js
+/20_56_25_3_2020.zip
