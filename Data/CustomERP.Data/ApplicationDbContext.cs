@@ -1,6 +1,4 @@
-﻿using CustomERP.Data.Configurations;
-
-namespace CustomERP.Data
+﻿namespace CustomERP.Data
 {
     using System;
     using System.Linq;
@@ -9,8 +7,8 @@ namespace CustomERP.Data
     using System.Threading.Tasks;
 
     using CustomERP.Data.Common.Models;
+    using CustomERP.Data.Configurations;
     using CustomERP.Data.Models;
-
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
@@ -30,11 +28,19 @@ namespace CustomERP.Data
 
         public DbSet<Company> Companies { get; set; }
 
+        public DbSet<Department> Departments { get; set; }
+
         public DbSet<Order> Orders { get; set; }
+
+        public DbSet<Schedule> Schedules { get; set; }
 
         public DbSet<Section> Sections { get; set; }
 
         public DbSet<Setting> Settings { get; set; }
+
+        public DbSet<Shift> Shifts { get; set; }
+
+        public DbSet<ShiftDay> ShiftDays { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
@@ -94,10 +100,15 @@ namespace CustomERP.Data
         private void ConfigureUserIdentityRelations(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new ApplicationUserConfiguration());
+            builder.ApplyConfiguration(new ApplicationRoleConfiguration());
             builder.ApplyConfiguration(new AddressConfiguration());
             builder.ApplyConfiguration(new CompanyConfiguration());
             builder.ApplyConfiguration(new OrderConfiguration());
             builder.ApplyConfiguration(new SectionConfiguration());
+            builder.ApplyConfiguration(new DepartmentConfiguration());
+            builder.ApplyConfiguration(new ScheduleConfiguration());
+            builder.ApplyConfiguration(new ShiftConfiguration());
+            builder.ApplyConfiguration(new ShiftDayConfiguration());
         }
 
         private void ApplyAuditInfoRules()
@@ -114,7 +125,6 @@ namespace CustomERP.Data
                 if (entry.State == EntityState.Added && entity.CreatedOn == default)
                 {
                     entity.CreatedOn = DateTime.UtcNow;
-                    entity.CreatedFrom = "TODO";
                 }
                 else
                 {

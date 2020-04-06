@@ -1,0 +1,41 @@
+﻿@model CustomERP.Web.ViewModels.Production.Sections.SectionCreateInputModel
+@{
+    ViewData["Title"] = "Create new section";
+
+    var departments = this.Model.Departments.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+    var sections = this.Model.Sections.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+}
+
+<h1>Create</h1>
+
+<h4>Section</h4>
+<hr />
+<form method="post" asp-action="Create">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <br/>
+    <div class="form-group">
+        <label asp-for="DepartmentId"></label>
+        <select asp-for="DepartmentId" class="form-control" asp-items="departments"></select>
+        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+    </div>
+    <br/>
+    <div class="form-group">
+        <label asp-for="SectionParentId">Part of</label>
+        <select asp-for="SectionParentId" class="form-control" asp-items="sections"></select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

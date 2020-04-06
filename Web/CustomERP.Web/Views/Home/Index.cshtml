@@ -1,9 +1,101 @@
 ﻿@using CustomERP.Common
+@using CustomERP.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@{var user = await UserManager.GetUserAsync(this.User); }
 @{
     this.ViewData["Title"] = "Home Page";
+    var width = int.Parse((this.TempData["Width"]).ToString());
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- A vertical navbar -->
+<div class="row">
+    <div   id="toggle-navbar" class="col-md-3 mb-3 collapse">
+        <nav class="navbar bg-dark">
+
+            <!-- Links -->
+            <ul class="navbar-nav d-flex">
+                <li class="nav-item">
+                    <a href="#" class="btn btn-info border-dark btn-block" role="button" data-toggle="collapse" data-target="#toggle-navbar">Link 1</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="btn btn-info border-dark btn-block" role="button">Link 2</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="btn btn-info border-dark btn-block" role="button">Link 3</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="btn btn-info border-dark btn-block dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Dropdown link
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Link 1</a>
+                        <a class="dropdown-item" href="#">Link 2</a>
+                        <a class="dropdown-item" href="#">Link 3</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Dropdown link
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Link 1</a>
+                        <a class="dropdown-item" href="#">Link 2</a>
+                        <a class="dropdown-item" href="#">Link 3</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="col-md-9">
+        <div id="demo1" class="collapse">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </div>
+    </div>
 </div>
+
+<div class="container mt-1">
+    <h2>Simple Collapsible</h2>
+    <p>Click on the button to toggle between showing and hiding content.</p>
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#toggle-navbar">Simple collapsible</button>
+    <div id="demo" class="collapse">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </div>
+</div>
+    @if (user != null)
+    {
+        <div>
+            <hr />
+            <section class="align-items-xl-start">
+                <div>P1 25 x 1100</div>
+                <div class="progress" style="height: 25px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: @width%;color:black" aria-valuenow="@width" aria-valuemin="0" aria-valuemax="25">@width бр.</div>
+                </div>
+            </section>
+            <hr />
+            <section>
+                <div>P2 20 x 1150</div>
+                <div class="progress" style="height: 25px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: @(width+5)%;color:black" aria-valuenow="@(width+5)" aria-valuemin="0" aria-valuemax="25">@(width+5) бр.</div>
+                </div>
+            </section>
+            <hr />
+            <section class="align-items-xl-start">
+                <div>P1 25 x 1100</div>
+                <div class="progress" style="height: 25px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: @width%;color:black" aria-valuenow="@width" aria-valuemin="0" aria-valuemax="25">@width бр.</div>
+                </div>
+            </section>
+
+        </div>
+    }
+
+
+
+
+
+

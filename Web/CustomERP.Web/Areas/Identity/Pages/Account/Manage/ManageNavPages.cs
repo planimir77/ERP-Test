@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Rendering;
-
-namespace CustomERP.Web.Areas.Identity.Pages.Account.Manage
+﻿namespace CustomERP.Web.Areas.Identity.Pages.Account.Manage
 {
+    using System;
+
+    using Microsoft.AspNetCore.Mvc.Rendering;
+
     public static class ManageNavPages
     {
         public static string Index => "Index";
+
+        public static string IndexUser => "IndexUser";
 
         public static string Email => "Email";
 
@@ -21,6 +21,8 @@ namespace CustomERP.Web.Areas.Identity.Pages.Account.Manage
         public static string TwoFactorAuthentication => "TwoFactorAuthentication";
 
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
+
+        public static string IndexUserNavClass(ViewContext viewContext) => PageNavClass(viewContext, IndexUser);
 
         public static string EmailNavClass(ViewContext viewContext) => PageNavClass(viewContext, Email);
 

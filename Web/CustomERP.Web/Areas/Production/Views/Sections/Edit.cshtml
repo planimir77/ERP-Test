@@ -1,0 +1,70 @@
+﻿@model CustomERP.Web.ViewModels.Production.Sections.SectionEditInputModel
+
+@{
+    ViewData["Title"] = "Edit";
+    var section = this.Model.CurrentSectionParentId == null ? "None" : this.Model.SectionParent.Name;
+
+    var departments = this.Model.Departments.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+    var sections = this.Model.Sections.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-3">
+        <h4>Section</h4>
+
+        <hr />
+        <form method="get" asp-action="Edit">
+            <div>
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" readonly="@true"/>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label asp-for="CurrentDepartmentId"></label>
+                <div class="input-group">
+                    <input asp-for="Department.Name" class="form-control" readonly="@true"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentSectionParentId"></label>
+                <div class="input-group">
+                    <input asp-for="SectionParent" class="form-control" readonly="@true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="button" value="Save" class="btn btn-primary"/>
+            </div>
+        </form>
+        <form method="post" asp-action="Edit">
+            <div>
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label asp-for="DepartmentId"></label>
+                <select asp-for="DepartmentId" class="form-control" asp-items="departments"></select>
+                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label asp-for="SectionParentId">Part of</label>
+                <select asp-for="SectionParentId" class="form-control" asp-items="sections"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

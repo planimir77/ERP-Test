@@ -19,6 +19,16 @@
     <Compile Remove="Migrations\20200321202750_RefactoringTables.Designer.cs" />
     <Compile Remove="Migrations\20200324141714_InitialCreate.cs" />
     <Compile Remove="Migrations\20200324141714_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200402180507_MoreTables.cs" />
+    <Compile Remove="Migrations\20200402180507_MoreTables.Designer.cs" />
+    <Compile Remove="Migrations\20200404150449_AddSectionParentNullable.cs" />
+    <Compile Remove="Migrations\20200404150449_AddSectionParentNullable.Designer.cs" />
+    <Compile Remove="Migrations\20200404222636_shiftNulable.cs" />
+    <Compile Remove="Migrations\20200404222636_shiftNulable.Designer.cs" />
+    <Compile Remove="Migrations\20200404231354_shiftNullable.cs" />
+    <Compile Remove="Migrations\20200404231354_shiftNullable.Designer.cs" />
+    <Compile Remove="Migrations\20200405000023_shiftNulable.cs" />
+    <Compile Remove="Migrations\20200405000023_shiftNulable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

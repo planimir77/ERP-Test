@@ -12,6 +12,8 @@
             options.Password.RequireNonAlphanumeric = false;
             options.Password.RequiredLength = 6;
             options.Password.RequiredUniqueChars = 0;
+            options.Lockout.MaxFailedAccessAttempts = 10;
+            options.User.RequireUniqueEmail = true;
         }
     }
 }

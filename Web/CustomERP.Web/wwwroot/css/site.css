@@ -26,6 +26,7 @@ html {
 }
 
 .box-shadow {
+    box-shadow: 0 .25rem .75rem #000000;
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
@@ -43,8 +44,11 @@ html {
 
 body {
     /* Margin bottom by footer height */
+    background-color: #ffaf00;
+    background-color: rgba(255, 175, 0, 0.20);
     margin-bottom: 60px;
 }
+
 .footer {
     position: absolute;
     bottom: 0;

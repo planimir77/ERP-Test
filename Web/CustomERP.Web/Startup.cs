@@ -34,7 +34,9 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(
-                options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
+                options => options
+                    .UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")),
+                ServiceLifetime.Transient);
 
             services.AddDefaultIdentity<ApplicationUser>(IdentityOptionsProvider.GetIdentityOptions)
                 .AddRoles<ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
@@ -59,6 +61,8 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<IDepartmentsService, DepartmentsService>();
+            services.AddTransient<ISectionsService, SectionsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

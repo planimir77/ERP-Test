@@ -1,9 +1,11 @@
 ﻿// ReSharper disable VirtualMemberCallInConstructor
+
 namespace CustomERP.Data.Models
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Text;
 
     using CustomERP.Data.Common.Models;
 
@@ -30,8 +32,23 @@ namespace CustomERP.Data.Models
 
         public DateTime? CompletedOn { get; set; }
 
-        public string Note { get; set; }
+        public string Description { get; set; }
 
         public virtual ICollection<Section> Sections { get; set; }
+
+        public override string ToString()
+        {
+            var result = new StringBuilder();
+
+            result.Append(this.Recipe);
+            result.Append(" ");
+            result.Append(this.Quantity.ToString());
+            result.Append("x");
+            result.Append(this.ContentWeight.ToString());
+            result.Append(" ");
+            result.Append(this.Description);
+
+            return result.ToString().TrimEnd();
+        }
     }
 }

@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace CustomERP.Data.Migrations
+﻿namespace CustomERP.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,7 +28,7 @@ namespace CustomERP.Data.Migrations
                     PostCode = table.Column<string>(maxLength: 20, nullable: true),
                     Floor = table.Column<int>(maxLength: 50, nullable: true),
                     Room = table.Column<string>(maxLength: 6, nullable: true),
-                    Note = table.Column<string>(maxLength: 300, nullable: true)
+                    Description = table.Column<string>(maxLength: 300, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -75,7 +76,7 @@ namespace CustomERP.Data.Migrations
                     Progress = table.Column<int>(maxLength: 50, nullable: false),
                     IsActive = table.Column<bool>(nullable: false, defaultValue: false),
                     CompletedOn = table.Column<DateTime>(nullable: true),
-                    Note = table.Column<string>(maxLength: 200, nullable: true)
+                    Description = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {

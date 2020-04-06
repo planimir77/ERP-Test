@@ -10,6 +10,7 @@
     {
         public IActionResult Index()
         {
+            this.TempData["width"] = 10;
             return this.View();
         }
 
