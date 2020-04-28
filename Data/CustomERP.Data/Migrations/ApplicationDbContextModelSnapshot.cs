@@ -266,6 +266,9 @@ namespace CustomERP.Data.Migrations
 
                     b.HasIndex("CompanyId");
 
+                    b.HasIndex("FullName")
+                        .IsUnique();
+
                     b.HasIndex("IsDeleted");
 
                     b.HasIndex("ManagerId");
@@ -325,6 +328,9 @@ namespace CustomERP.Data.Migrations
                     b.HasIndex("AddressId");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Companies");
                 });
@@ -484,6 +490,61 @@ namespace CustomERP.Data.Migrations
                     b.ToTable("Schedules");
                 });
 
+            modelBuilder.Entity("CustomERP.Data.Models.ScheduleDay", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Begins")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedFrom")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedFrom")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("Duration")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IncludingRest")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedFrom")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Name")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ScheduleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WorkingMode")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("ScheduleId");
+
+                    b.ToTable("ScheduleDays");
+                });
+
             modelBuilder.Entity("CustomERP.Data.Models.Section", b =>
                 {
                     b.Property<int>("Id")
@@ -539,6 +600,9 @@ namespace CustomERP.Data.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.HasIndex("OrderId");
 
@@ -629,63 +693,12 @@ namespace CustomERP.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.HasIndex("ScheduleId");
 
                     b.ToTable("Shifts");
-                });
-
-            modelBuilder.Entity("CustomERP.Data.Models.ShiftDay", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Begins")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedFrom")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeletedFrom")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<TimeSpan>("Duration")
-                        .HasColumnType("time")
-                        .HasMaxLength(12);
-
-                    b.Property<TimeSpan>("IncludingRest")
-                        .HasColumnType("time")
-                        .HasMaxLength(12);
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ModifiedFrom")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ScheduleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WorkingMode")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.HasIndex("ScheduleId");
-
-                    b.ToTable("ShiftDays");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -828,6 +841,15 @@ namespace CustomERP.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
+            modelBuilder.Entity("CustomERP.Data.Models.ScheduleDay", b =>
+                {
+                    b.HasOne("CustomERP.Data.Models.Schedule", "Schedule")
+                        .WithMany("CycleOfDays")
+                        .HasForeignKey("ScheduleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("CustomERP.Data.Models.Section", b =>
                 {
                     b.HasOne("CustomERP.Data.Models.Department", "Department")
@@ -850,15 +872,6 @@ namespace CustomERP.Data.Migrations
                 {
                     b.HasOne("CustomERP.Data.Models.Schedule", "Schedule")
                         .WithMany("Shifts")
-                        .HasForeignKey("ScheduleId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CustomERP.Data.Models.ShiftDay", b =>
-                {
-                    b.HasOne("CustomERP.Data.Models.Schedule", "Schedule")
-                        .WithMany("CycleOfDays")
                         .HasForeignKey("ScheduleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();

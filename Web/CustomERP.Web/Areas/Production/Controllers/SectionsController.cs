@@ -1,7 +1,4 @@
-﻿using System;
-using System.Net.WebSockets;
-
-namespace CustomERP.Web.Areas.Production.Controllers
+﻿namespace CustomERP.Web.Areas.Production.Controllers
 {
     using System.Linq;
     using System.Threading.Tasks;
@@ -116,6 +113,8 @@ namespace CustomERP.Web.Areas.Production.Controllers
         public IActionResult Edit(int id)
         {
             var sectionViewModel = this.sectionsService.GetById<SectionEditInputModel>(id);
+
+            var departmentsTest = this.departmentsService.GetAll<DepartmentDropDownViewModel>();
             var departments = this.departmentsService.GetAll<DepartmentDropDownViewModel>()
                 .Prepend(new DepartmentDropDownViewModel
                 {

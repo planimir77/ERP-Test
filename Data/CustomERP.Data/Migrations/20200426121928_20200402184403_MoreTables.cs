@@ -3,10 +3,37 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CustomERP.Data.Migrations
 {
-    public partial class MoreTables : Migration
+    public partial class _20200402184403_MoreTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterColumn<string>(
+                name: "ModifiedFrom",
+                table: "Sections",
+                maxLength: 40,
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)",
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "DeletedFrom",
+                table: "Sections",
+                maxLength: 40,
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)",
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "CreatedFrom",
+                table: "Sections",
+                maxLength: 40,
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)",
+                oldNullable: true);
+
             migrationBuilder.AddColumn<int>(
                 name: "DepartmentId",
                 table: "Sections",
@@ -16,8 +43,7 @@ namespace CustomERP.Data.Migrations
             migrationBuilder.AddColumn<int>(
                 name: "ShiftId",
                 table: "AspNetUsers",
-                nullable: false,
-                defaultValue: 0);
+                nullable: true);
 
             migrationBuilder.AlterColumn<string>(
                 name: "ModifiedFrom",
@@ -59,7 +85,7 @@ namespace CustomERP.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     DeletedFrom = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(maxLength: 50, nullable: false)
+                    Name = table.Column<string>(maxLength: 50, nullable: false),
                 },
                 constraints: table =>
                 {
@@ -88,7 +114,7 @@ namespace CustomERP.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ShiftDays",
+                name: "ScheduleDays",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -100,17 +126,18 @@ namespace CustomERP.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     DeletedFrom = table.Column<string>(nullable: true),
+                    Name = table.Column<int>(nullable: false),
                     WorkingMode = table.Column<int>(nullable: false),
-                    Begins = table.Column<DateTime>(nullable: false),
-                    Duration = table.Column<TimeSpan>(maxLength: 12, nullable: false),
-                    IncludingRest = table.Column<TimeSpan>(maxLength: 12, nullable: false),
+                    Begins = table.Column<string>(nullable: true),
+                    Duration = table.Column<int>(nullable: true),
+                    IncludingRest = table.Column<int>(nullable: true),
                     ScheduleId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShiftDays", x => x.Id);
+                    table.PrimaryKey("PK_ScheduleDays", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ShiftDays_Schedules_ScheduleId",
+                        name: "FK_ScheduleDays_Schedules_ScheduleId",
                         column: x => x.ScheduleId,
                         principalTable: "Schedules",
                         principalColumn: "Id",
@@ -150,6 +177,24 @@ namespace CustomERP.Data.Migrations
                 column: "DepartmentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Sections_Name",
+                table: "Sections",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Companies_Name",
+                table: "Companies",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_FullName",
+                table: "AspNetUsers",
+                column: "FullName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_ShiftId",
                 table: "AspNetUsers",
                 column: "ShiftId");
@@ -160,24 +205,30 @@ namespace CustomERP.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ScheduleDays_IsDeleted",
+                table: "ScheduleDays",
+                column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ScheduleDays_ScheduleId",
+                table: "ScheduleDays",
+                column: "ScheduleId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Schedules_IsDeleted",
                 table: "Schedules",
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShiftDays_IsDeleted",
-                table: "ShiftDays",
-                column: "IsDeleted");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ShiftDays_ScheduleId",
-                table: "ShiftDays",
-                column: "ScheduleId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Shifts_IsDeleted",
                 table: "Shifts",
                 column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Shifts_Name",
+                table: "Shifts",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Shifts_ScheduleId",
@@ -215,7 +266,7 @@ namespace CustomERP.Data.Migrations
                 name: "Departments");
 
             migrationBuilder.DropTable(
-                name: "ShiftDays");
+                name: "ScheduleDays");
 
             migrationBuilder.DropTable(
                 name: "Shifts");
@@ -228,6 +279,18 @@ namespace CustomERP.Data.Migrations
                 table: "Sections");
 
             migrationBuilder.DropIndex(
+                name: "IX_Sections_Name",
+                table: "Sections");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Companies_Name",
+                table: "Companies");
+
+            migrationBuilder.DropIndex(
+                name: "IX_AspNetUsers_FullName",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropIndex(
                 name: "IX_AspNetUsers_ShiftId",
                 table: "AspNetUsers");
 
@@ -238,6 +301,32 @@ namespace CustomERP.Data.Migrations
             migrationBuilder.DropColumn(
                 name: "ShiftId",
                 table: "AspNetUsers");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "ModifiedFrom",
+                table: "Sections",
+                type: "nvarchar(max)",
+                nullable: true,
+                oldClrType: typeof(string),
+                oldMaxLength: 40,
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "DeletedFrom",
+                table: "Sections",
+                type: "nvarchar(max)",
+                nullable: true,
+                oldClrType: typeof(string),
+                oldMaxLength: 40,
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "CreatedFrom",
+                table: "Sections",
+                type: "nvarchar(max)",
+                nullable: true,
+                oldClrType: typeof(string),
+                oldMaxLength: 40);
 
             migrationBuilder.AlterColumn<string>(
                 name: "ModifiedFrom",

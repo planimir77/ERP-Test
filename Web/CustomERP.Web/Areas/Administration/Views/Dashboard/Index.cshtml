@@ -4,4 +4,19 @@
 }
 
 <h1>@this.ViewData["Title"]</h1>
-Settings: @this.Model.SettingsCount
+<div class="nav-item text-warning">
+    <label>Schedules</label>
+    <a class="nav-link" asp-area="Production" asp-controller="Schedules" asp-action="Index">Index</a>
+    <a class="nav-link" asp-area="Production" asp-controller="Schedules" asp-action="Edit">Edit</a>
+    <a class="nav-link" asp-area="Production" asp-controller="Schedules" asp-action="Create">Create</a>
+    <a class="nav-link" asp-area="Production" asp-controller="Schedules" asp-action="Delete">Delete</a>
+</div>
+<hr/>
+<div class="nav-item text-warning">
+    <label>ShiftDays</label>
+    <a class="nav-link" asp-area="Production" asp-controller="ScheduleDay" asp-action="Index">Index</a>
+    <a class="nav-link" asp-area="Production" asp-controller="ScheduleDay" asp-action="Edit">Edit</a>
+    <a class="nav-link" asp-area="Production" asp-controller="ScheduleDay" asp-action="Create">Create</a>
+    <a class="nav-link" asp-area="Production" asp-controller="ScheduleDay" asp-action="Delete">Delete</a>
+</div>
+

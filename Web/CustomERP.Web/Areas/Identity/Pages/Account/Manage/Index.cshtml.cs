@@ -27,16 +27,16 @@
         [TempData]
         public string StatusMessage { get; set; }
 
-        [BindProperty]
-        public InputModel UsernameTest { get; set; }
+        //[BindProperty]
+        //public InputModel Usernam { get; set; }
 
         [BindProperty]
         public InputModel Input { get; set; }
 
         public class InputModel
         {
-            [Display(Name = "Username Test")]
-            public string UsernameTest { get; set; }
+            [Display(Name = "Username")]
+            public string Username { get; set; }
 
             [Phone]
             [Display(Name = "Phone number")]
@@ -52,7 +52,7 @@
 
             this.Input = new InputModel
             {
-                UsernameTest = userName,
+                Username = userName,
                 PhoneNumber = phoneNumber,
             };
         }
@@ -71,7 +71,7 @@
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var userTest = this.Input.UsernameTest;
+            var userTest = this.Input.Username;
             var user = await this._userManager.GetUserAsync(this.User);
             if (user == null)
             {

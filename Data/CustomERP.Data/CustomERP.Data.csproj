@@ -21,6 +21,8 @@
     <Compile Remove="Migrations\20200324141714_InitialCreate.Designer.cs" />
     <Compile Remove="Migrations\20200402180507_MoreTables.cs" />
     <Compile Remove="Migrations\20200402180507_MoreTables.Designer.cs" />
+    <Compile Remove="Migrations\20200402184403_MoreTables.cs" />
+    <Compile Remove="Migrations\20200402184403_MoreTables.Designer.cs" />
     <Compile Remove="Migrations\20200404150449_AddSectionParentNullable.cs" />
     <Compile Remove="Migrations\20200404150449_AddSectionParentNullable.Designer.cs" />
     <Compile Remove="Migrations\20200404222636_shiftNulable.cs" />
@@ -29,6 +31,20 @@
     <Compile Remove="Migrations\20200404231354_shiftNullable.Designer.cs" />
     <Compile Remove="Migrations\20200405000023_shiftNulable.cs" />
     <Compile Remove="Migrations\20200405000023_shiftNulable.Designer.cs" />
+    <Compile Remove="Migrations\20200405000549_shiftNulable.cs" />
+    <Compile Remove="Migrations\20200405000549_shiftNulable.Designer.cs" />
+    <Compile Remove="Migrations\20200425201512_AddShiftDayDataTypeTime.cs" />
+    <Compile Remove="Migrations\20200425201512_AddShiftDayDataTypeTime.Designer.cs" />
+    <Compile Remove="Migrations\20200425225618_CycleOfDaysToICollection.cs" />
+    <Compile Remove="Migrations\20200425225618_CycleOfDaysToICollection.Designer.cs" />
+    <Compile Remove="Migrations\20200426082535_AddPropertyNameToScheduleDay.cs" />
+    <Compile Remove="Migrations\20200426082535_AddPropertyNameToScheduleDay.Designer.cs" />
+    <Compile Remove="Migrations\20200426114551_AddPropertyNameToScheduleDayDateTimeToStringTimeSpanToInt.cs" />
+    <Compile Remove="Migrations\20200426114551_AddPropertyNameToScheduleDayDateTimeToStringTimeSpanToInt.Designer.cs" />
+    <Compile Remove="Migrations\20200426114733_AddPropertyNameToScheduleDayDateTimeToStringTimeSpanToInt.cs" />
+    <Compile Remove="Migrations\20200426114733_AddPropertyNameToScheduleDayDateTimeToStringTimeSpanToInt.Designer.cs" />
+    <Compile Remove="Migrations\20200426115323_AddPropertyNameToScheduleDayDateTimeToStringTimeSpanToInt.cs" />
+    <Compile Remove="Migrations\20200426115323_AddPropertyNameToScheduleDayDateTimeToStringTimeSpanToInt.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

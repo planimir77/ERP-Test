@@ -5,24 +5,25 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    public class ShiftDayConfiguration :IEntityTypeConfiguration<ShiftDay>
+    public class ScheduleDayConfiguration :IEntityTypeConfiguration<ScheduleDay>
     {
-        public void Configure(EntityTypeBuilder<ShiftDay> builder)
+        public void Configure(EntityTypeBuilder<ScheduleDay> builder)
         {
+            builder
+                .Property(e => e.Name)
+                .IsRequired();
             builder
                 .Property(e => e.WorkingMode)
                 .IsRequired();
             builder
                 .Property(e => e.Begins)
-                .IsRequired();
+                .IsRequired(false);
             builder
                 .Property(e => e.IncludingRest)
-                .IsRequired()
-                .HasMaxLength(12);
+                .IsRequired(false);
             builder
                 .Property(e => e.Duration)
-                .IsRequired()
-                .HasMaxLength(12);
+                .IsRequired(false);
         }
     }
 }

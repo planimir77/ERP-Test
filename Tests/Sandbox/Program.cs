@@ -23,6 +23,7 @@
     {
         public static int Main(string[] args)
         {
+            GenerateCalendarTable(2020,4);
             Console.WriteLine($"{typeof(Program).Namespace} ({string.Join(" ", args)}) starts working...");
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
@@ -43,6 +44,15 @@
                 return Parser.Default.ParseArguments<SandboxOptions>(args).MapResult(
                     opts => SandboxCode(opts, serviceProvider).GetAwaiter().GetResult(),
                     _ => 255);
+            }
+        }
+
+        public static void GenerateCalendarTable(int year, int month)
+        {
+            for (int i = -10; i <= 31; i++)
+            {
+                var result = i % 4;
+                Console.WriteLine($"{i} % 4 = {result}");
             }
         }
 

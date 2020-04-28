@@ -10,7 +10,14 @@
     {
         public IActionResult Index()
         {
+            var generator = new GenerateViewModel();
             this.TempData["width"] = 10;
+            return this.View(generator);
+        }
+
+        public IActionResult Test()
+        {
+
             return this.View();
         }
 

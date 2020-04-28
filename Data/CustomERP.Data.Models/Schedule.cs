@@ -2,7 +2,6 @@
 
 namespace CustomERP.Data.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -12,7 +11,7 @@ namespace CustomERP.Data.Models
     {
         public Schedule()
         {
-            this.CycleOfDays = new ShiftDay[this.NumberOfDays];
+            this.CycleOfDays = new HashSet<ScheduleDay>();
             this.Shifts = new HashSet<Shift>();
         }
 
@@ -23,7 +22,7 @@ namespace CustomERP.Data.Models
         public int NumberOfDays { get; set; }
 
         [Required]
-        public virtual ShiftDay[] CycleOfDays { get; set; }
+        public virtual ICollection<ScheduleDay> CycleOfDays { get; set; }
 
         public virtual ICollection<Shift> Shifts { get; set; }
     }

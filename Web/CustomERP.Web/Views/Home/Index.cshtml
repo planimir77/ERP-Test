@@ -2,16 +2,19 @@
 @using CustomERP.Data.Models
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<ApplicationUser> UserManager
+@model CustomERP.Web.Controllers.GenerateViewModel;
 @{var user = await UserManager.GetUserAsync(this.User); }
 @{
     this.ViewData["Title"] = "Home Page";
     var width = int.Parse((this.TempData["Width"]).ToString());
 }
 
+<a asp-action="Test">Go to Test</a>
 <!-- A vertical navbar -->
+<i class="fas fa-bars"></i>
 <div class="row">
-    <div   id="toggle-navbar" class="col-md-3 mb-3 collapse">
-        <nav class="navbar bg-dark">
+    <div id="toggle-navbar" class="col-md-3 mb-3 collapse">
+        <nav class="navbar">
 
             <!-- Links -->
             <ul class="navbar-nav d-flex">
@@ -66,36 +69,38 @@
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     </div>
 </div>
-    @if (user != null)
-    {
-        <div>
-            <hr />
-            <section class="align-items-xl-start">
-                <div>P1 25 x 1100</div>
-                <div class="progress" style="height: 25px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: @width%;color:black" aria-valuenow="@width" aria-valuemin="0" aria-valuemax="25">@width бр.</div>
-                </div>
-            </section>
-            <hr />
-            <section>
-                <div>P2 20 x 1150</div>
-                <div class="progress" style="height: 25px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: @(width+5)%;color:black" aria-valuenow="@(width+5)" aria-valuemin="0" aria-valuemax="25">@(width+5) бр.</div>
-                </div>
-            </section>
-            <hr />
-            <section class="align-items-xl-start">
-                <div>P1 25 x 1100</div>
-                <div class="progress" style="height: 25px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: @width%;color:black" aria-valuenow="@width" aria-valuemin="0" aria-valuemax="25">@width бр.</div>
-                </div>
-            </section>
+@Html.Raw(Model.GenerateCalendarTable(2020, 4, 4));
+<table class="calendar">
+    <tbody>
+    <tr>
+        <td>5</td>
+    </tr>
+    </tbody>
+</table>
+@if (user != null)
+{
+    <div>
+        <hr />
+        <section class="align-items-xl-start">
+            <div>P1 25 x 1100</div>
+            <div class="progress" style="height: 25px;">
+                <div class="progress-bar bg-success" role="progressbar" style="width: @width%;color:black" aria-valuenow="@width" aria-valuemin="0" aria-valuemax="25">@width бр.</div>
+            </div>
+        </section>
+        <hr />
+        <section>
+            <div>P2 20 x 1150</div>
+            <div class="progress" style="height: 25px;">
+                <div class="progress-bar bg-success" role="progressbar" style="width: @(width+5)%;color:black" aria-valuenow="@(width+5)" aria-valuemin="0" aria-valuemax="25">@(width+5) бр.</div>
+            </div>
+        </section>
+        <hr />
+        <section class="align-items-xl-start">
+            <div>P1 25 x 1100</div>
+            <div class="progress" style="height: 25px;">
+                <div class="progress-bar bg-success" role="progressbar" style="width: @width%;color:black" aria-valuenow="@width" aria-valuemin="0" aria-valuemax="25">@width бр.</div>
+            </div>
+        </section>
 
-        </div>
-    }
-
-
-
-
-
-
+    </div>
+}

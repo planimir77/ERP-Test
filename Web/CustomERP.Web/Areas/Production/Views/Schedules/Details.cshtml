@@ -1,0 +1,79 @@
+﻿@model CustomERP.Data.Models.Schedule
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h1>Details</h1>
+            <h4>Schedule</h4>
+        </div>
+        <div class="container">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.NumberOfDays)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.NumberOfDays)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.IsDeleted)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.IsDeleted)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DeletedOn)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DeletedOn)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DeletedFrom)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DeletedFrom)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CreatedOn)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ModifiedOn)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ModifiedOn)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CreatedFrom)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CreatedFrom)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ModifiedFrom)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ModifiedFrom)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="col">
+        <a asp-action="Index"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back to List</a>&nbsp;|&nbsp;
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit&nbsp;&nbsp;<i class="far fa-edit"></i></a>
+    </div>
+</div>
+
